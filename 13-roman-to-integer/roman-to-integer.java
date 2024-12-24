@@ -1,5 +1,7 @@
 class Solution {
     public int romanToInt(String s) {
+        int result = 0;
+        
         HashMap<Character, Integer> romanSymbols = new HashMap<>();
         romanSymbols.put('I',1);
         romanSymbols.put('V',5);
@@ -8,13 +10,6 @@ class Solution {
         romanSymbols.put('C',100);
         romanSymbols.put('D',500);
         romanSymbols.put('M',1000);
-
-        List<Integer> numbers = new ArrayList<>();
-        int result = 0;
-
-        for(char letter : s.toCharArray()){
-            numbers.add(romanSymbols.get(letter));
-        }
         
         for(int i = 0; i < s.length(); i++){
             int curr = romanSymbols.get(s.charAt(i));
