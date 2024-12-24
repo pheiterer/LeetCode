@@ -15,14 +15,15 @@ class Solution {
         for(char letter : s.toCharArray()){
             numbers.add(romanSymbols.get(letter));
         }
-        for(int i = 0; i < numbers.size(); i++){
-            int curr = numbers.get(i);
+        
+        for(int i = 0; i < s.length(); i++){
+            int curr = romanSymbols.get(s.charAt(i));
 
-            if(i+1 == numbers.size()){
+            if(i+1 == s.length()){
                 return  result += curr;
             }
 
-            int next = numbers.get(i+1);
+            int next = romanSymbols.get(s.charAt(i+1));
 
             if(curr < next){
                 result = result + (next - curr);
