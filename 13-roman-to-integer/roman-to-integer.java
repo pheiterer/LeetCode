@@ -2,7 +2,7 @@ class Solution {
     public int romanToInt(String s) {
         int result = 0;
 
-        HashMap<Character, Integer> romanSymbols = new HashMap<>();
+        Map<Character, Integer> romanSymbols = new HashMap<>();
         romanSymbols.put('I',1);
         romanSymbols.put('V',5);
         romanSymbols.put('X',10);
