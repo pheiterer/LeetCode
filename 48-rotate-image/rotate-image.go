@@ -1,28 +1,17 @@
 func rotate(matrix [][]int)  {
-    temp := copyMatrix(matrix)
-    column := len(matrix[0])-1
-    row := 0
+    size := len(matrix)
 
-    for {
-        for i :=0; i < len(matrix); i++{
-            matrix[i][column] = temp[row][i]
-            fmt.Println(temp)
+    //Transpose
+    for i := 0; i < size; i++ {
+        for j := i + 1; j < size; j++ {
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
         }
+    }
 
-        column--
-
-        if column < 0{
-            break
+    //Reflection
+    for i := 0; i < size; i++{
+        for j := 0; j < size/2; j++{
+            matrix[i][j], matrix[i][size - j - 1] = matrix[i][size - j - 1], matrix [i][j]
         }
-
-        row++
     }
-}
-
-func copyMatrix(matrix [][]int) [][]int {
-    copy := make([][]int, len(matrix)) // Cria um slice do mesmo tamanho
-    for i := range matrix {
-        copy[i] = append([]int(nil), matrix[i]...) // Copia cada linha
-    }
-    return copy
 }
