@@ -1,28 +1,20 @@
 func groupAnagrams(strs []string) [][]string {
-    strsMap := make(map[string][]string)
-
-    for i := 0; i < len(strs); i++ {
-        var sortString string
-        sortString = SortStringDesc(strs[i])
-        strsMap[sortString] = append(strsMap[sortString], strs[i])
-    }
-
-    fmt.Println(strsMap)
-
     var result [][]string
-
-    for  _, val := range strsMap {
-        result = append(result, val)
+    words:=make(map[string]int)
+    ids:=0;
+    for _,str := range strs{
+        count:=make([]rune,26)
+        for _,c := range str{
+            count[c - 'a']++
+        }
+        key:=string(count)
+        if idx,seen := words[key]; !seen{
+            words[key]=ids
+            ids++
+            result=append(result,[]string{str})
+        }else{
+            result[idx]=append(result[idx],str)
+        }
     }
-
     return result
-
-}
-
-func SortStringDesc(s string) string {
-    chars := []rune(s)
-    sort.Slice(chars, func(i, j int) bool {
-        return chars[i] > chars[j] // Sort in descending order
-    })
-    return string(chars)
 }
