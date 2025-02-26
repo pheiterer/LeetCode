@@ -11,10 +11,7 @@ func isPalindrome(s string) bool {
 
     r := len(result)-1
     l := 0
-
-    fmt.Println(r)
-    fmt.Println(l)
-
+    
     for l < r && l != r{
         if result[l] != result[r] {
             return false
