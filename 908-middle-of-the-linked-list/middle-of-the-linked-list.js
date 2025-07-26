@@ -9,20 +9,17 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var middleNode = function(head) {
+var middleNode = function (head) {
     let curr = head;
     let size = 1;
-    while (curr.next){
+    while (curr.next) {
         curr = curr.next;
-        size ++;
+        size++;
     }
-    if (size % 2 != 0){
-        size = (size + 1) / 2;
-    } else {
-        size = size / 2 + 1;
-    }
+    
+    size = (size >> 1) + 1;
 
-    while(size > 1){
+    while (size > 1) {
         head = head.next;
         size--;
     }
