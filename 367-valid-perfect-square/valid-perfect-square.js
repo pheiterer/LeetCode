@@ -7,9 +7,8 @@ var isPerfectSquare = function (num) {
     let R = num;
     while (L <= R) {
         const mid = Math.floor(L + (R - L) / 2);
-        const square = mid * mid;
-        if (square === num) return true;
-        if (square < num) L = mid + 1;
+        if (mid * mid === num) return true;
+        if (mid * mid < num) L = mid + 1;
         else R = mid - 1;
     }
 
