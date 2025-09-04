@@ -6,8 +6,9 @@
 var minEatingSpeed = function(piles, h) {
     const maxPile = Math.max(...piles);
 
-    const canFinish = (k) => 
-        piles.reduce((hours, pile) => hours + Math.ceil(pile / k), 0) <= h;
+const canFinish = (k) => 
+    piles.reduce((hours, pile) => hours + Math.floor((pile + k - 1) / k), 0) <= h;
+
 
     let left = 1, right = maxPile;
 
