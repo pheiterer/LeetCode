@@ -1,30 +1,35 @@
 public class Solution {
-    public int[] RearrangeArray(int[] nums) {
-        List<int> result = [];
-        Dictionary <int, int> values = new();
-        SortedSet<int> distincts = new();
-        foreach(int num in nums){
-            if(values.ContainsKey(num)){
-                values[num]++;
-            } else {
-                values.Add(num, 1);
-            }
-            distincts.Add(num);
-        }
+public int[] RearrangeArray(int[] nums)
+{
+    Dictionary<int, int> values = new();
 
-        bool shoudStay = true; 
-        while(shoudStay){
-            shoudStay = false;
-            for (int i = 0; i < distincts.Count; i++){
-                int curr = distincts.ElementAt(i);
-                if (values[curr] == 0) continue;
-                shoudStay = true;
-
-                result.Add(curr);
-                values[curr]--;
-            }
-        }
-
-        return result.ToArray();
+    foreach (int num in nums)
+    {
+        if (!values.TryAdd(num, 1))
+            values[num]++;
     }
+
+    int[] distincts = values.Keys.OrderBy(x => x).ToArray();
+
+    List<int> result = new(nums.Length);
+
+    bool hasValues = true;
+
+    while (hasValues)
+    {
+        hasValues = false;
+
+        foreach (int curr in distincts)
+        {
+            if (values[curr] == 0)
+                continue;
+
+            result.Add(curr);
+            values[curr]--;
+            hasValues = true;
+        }
+    }
+
+    return result.ToArray();
+}
 }
